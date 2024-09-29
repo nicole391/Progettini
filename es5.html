@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prenotazione Pizza</title>
+    <script src="scriptEs5.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css');
+
+        #pizza-image {
+            width: 400px;
+            height: 300px;
+            object-fit: cover;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar bg-base-100">
+        <a class="btn btn-ghost text-xl">Pizza!</a>
+    </div>
+
+    <div class="container mx-auto p-5  rounded-lg shadow-lg">
+
+        <h1 class="text-center text-3xl font-bold mb-5">Ordina la tua Pizza!</h1>
+
+        <form id="pizza-form" class="text-center">
+            <label for="pizza-select" class="block text-lg font-semibold mb-2">Scegli una pizza:</label>
+
+            <select id="pizza-select" name="pizza" class="select select-bordered mb-5 w-full max-w-xs"
+                onchange="updatePizzaImage()">
+                <option value="margherita">Margherita</option>
+                <option value="marinara">Marinara</option>
+                <option value="diavola">Diavola</option>
+                <option value="romana">Romana</option>
+                <option value="4stagioni">Quattro stagioni</option>
+                <option value="4formaggi">Quattro formaggi</option>
+                <option value="americana">Americana</option>
+                <option value="bufala">Bufala</option>
+            </select><br>
+
+            <div id="pizza-image-container" class="flex justify-center mb-5">
+                <img id="pizza-image"
+                    src="https://cdn.shopify.com/s/files/1/0274/9503/9079/files/20220211142754-margherita-9920_5a73220e-4a1a-4d33-b38f-26e98e3cd986.jpg?v=1723650067"
+                    alt="Pizza Selezionata" class="rounded-lg shadow-md">
+            </div>
+
+            <h3 class="text-lg font-semibold mb-2">Ingredienti extra</h3>
+
+            <div class="flex flex-wrap justify-center space-x-4 mb-5">
+                <div>
+                    <input type="checkbox" id="mushrooms" name="extra" class="checkbox">
+                    <label for="mushrooms"> Funghi</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="pepperoni" name="extra" class="checkbox">
+                    <label for="pepperoni"> Peperoni</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="extra_cheese" name="extra" class="checkbox">
+                    <label for="extra_cheese"> Extra formaggio</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="olives" name="extra" class="checkbox">
+                    <label for="olives"> Olive</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="onions" name="extra" class="checkbox">
+                    <label for="onions"> Cipolle</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="pineapple" name="extra" class="checkbox">
+                    <label for="pineapple"> Ananas</label>
+                </div>
+            </div>
+
+            <h2 class="text-lg font-semibold mb-2">Quantità</h2>
+            <input type="number" id="quantity" min="1" value="1" required
+                class="input input-bordered w-full max-w-xs mb-5">
+
+            <button type="button" id="calculate-button" onclick="calculateOrder()" class="btn btn-success">Calcola
+                Ordine</button>
+        </form>
+
+        <div id="order-summary" class="w-2/3 h-auto mt-5 p-8 bg-gray-50 rounded-lg shadow-xl mx-auto">
+            <h2 class="text-2xl font-bold">Riepilogo Ordine</h2>
+            <p id="summary-details" class="mt-4 text-lg"></p>
+            <p id="total-price" class="font-extrabold text-xl mt-4"></p>
+        </div>
+    </div>
+
+</body>
+
+</html>

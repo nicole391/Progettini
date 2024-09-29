@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prenotazione viaggi!</title>
+
+    <script src="scriptEs4.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/npm/daisyui@2.51.5/dist/full.css');
+
+        #destination-image {
+            width: 400px;
+            height: 300px;
+            object-fit: cover;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar bg-base-100">
+        <a class="btn btn-ghost text-xl">Prenotazione Viaggi</a>
+    </div>
+
+    <div class="container mx-auto p-5 rounded-lg shadow-lg">
+
+        <h1 class="text-center text-3xl font-bold mb-5">Prenota il tuo viaggio!</h1>
+
+        <form id="booking-form" class="text-center">
+            <h2 class="text-lg font-semibold mb-2">Dati Personali</h2>
+            <input type="text" id="name" placeholder="Nome" required class="input input-bordered w-full max-w-xs mb-4">
+            <input type="text" id="surname" placeholder="Cognome" required
+                class="input input-bordered w-full max-w-xs mb-4">
+            <input type="email" id="email" placeholder="Email" required
+                class="input input-bordered w-full max-w-xs mb-4">
+
+
+            <label for="destination" class="block text-lg font-semibold mb-2">Scegli una destinazione:</label>
+            <select id="destination" class="select select-bordered mb-4 w-full max-w-xs" onchange="updateDestination()">
+                <option value="" cost="0" image="">--Seleziona--</option>
+                <option value="roma" cost="100"
+                    image="https://turismoroma.it/sites/default/files/Roma%20in%20breve.jpg">Roma - €100</option>
+                <option value="vienna" cost="150"
+                    image="https://thetourguy.com/wp-content/uploads/2023/01/TTTD-Vienna-feature-1440-675.jpg">Vienna -
+                    €150</option>
+                <option value="parigi" cost="200"
+                    image="https://statics.cedscdn.it/photos/ARGOMENTO/MED/296/296_parigi.jpg">Parigi - €200</option>
+                <option value="londra" cost="250" image="https://www.dltviaggi.it/immagine/17827/Londra%201.jpg">Londra
+                    - €250</option>
+                <option value="cracovia" cost="150"
+                    image="https://boscolo-viaggi-res.cloudinary.com/image/upload/c_fill,h_496,w_836/f_auto/q_auto/v1687510216/Destinazioni/Polonia/Head_SS_Main_Square_Cracovia_2261463343_dfhtie.jpg">
+                    Cracovia - €150</option>
+            </select>
+
+
+            <div id="destination-image-container" class="flex justify-center mb-5">
+                <img id="destination-image" src="" alt="Destinazione Selezionata"
+                    class="hidden rounded-lg shadow-md w-1/2">
+            </div>
+
+
+            <label for="date" class="block text-lg font-semibold mb-2">Data di Partenza:</label>
+            <input type="date" id="date" required class="input input-bordered mb-4 w-full max-w-xs">
+
+            <label for="passengers" class="block text-lg font-semibold mb-2">Numero di Passeggeri:</label>
+            <input type="number" id="passengers" min="1" value="1" required
+                class="input input-bordered w-full max-w-xs mb-4">
+
+            <button type="button" onclick="calculateBooking()" class="btn btn-success">Calcola Totale</button>
+        </form>
+
+        <div id="booking-summary" class="hidden w-full mt-5 p-5 bg-gray-50 rounded-lg shadow-xl">
+            <h2 class="text-2xl font-bold">Riepilogo Prenotazione</h2>
+            <p id="summary" class="mt-4"></p>
+            <p id="total" class="font-extrabold text-xl mt-4"></p>
+        </div>
+    </div>
+
+</body>
+
+</html>
